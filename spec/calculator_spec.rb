@@ -1,8 +1,8 @@
 # Your code here
 
 #spec/calculator_spec.rb
-
-require_relative '../lib/calculator'
+require 'spec_helper'
+require 'calculator'
 
 describe Calculator do 
 
@@ -13,7 +13,7 @@ describe Calculator do
       expect(calculator.add(1,2)).to eq(3)
     end
     it 'returns the sum of a negative integer and positive integer' do
-      expect(calculator.add(-5,5)).to eq(0)
+      expect(calculator.add(-5,1)).to eq(-4)
     end
 
     it 'returns the sum of floats' do
@@ -22,19 +22,73 @@ describe Calculator do
     end
   end
 
-   describe '#subtract' do
-      it 'returns the subtract of positive integers' do
-        expect(calculator.subtract(3,2)).to eq(1)
-      end
-
-      it 'returns the subtract of negative integers' do
-        expect(calculator.subtract(3,-5)).to eq(8)
-      end
-
-      it 'returns the subtract of floats' do
-        expect(calculator.subtract(5.33, 3.33)).to eq(2.00)
-        expect(calculator.subtract(5.33,3.33).class).to eq(Float)
-      end
+  describe '#subtract' do
+    it 'returns the subtract of positive integers' do
+      expect(calculator.subtract(3,2)).to eq(1)
     end
 
+    it 'returns the subtract of negative integers' do
+      expect(calculator.subtract(3,-5)).to eq(8)
+    end
+
+    it 'returns the subtract of floats' do
+      expect(calculator.subtract(5.33, 3.33)).to eq(2.00)
+      expect(calculator.subtract(5.33,3.33).class).to eq(Float)
+    end
+  end
+
+  describe '#multiply' do
+    it 'returns the product of positive integers' do
+      expect(calculator.multiply(4, 5)).to eq(20)
+    end
+
+    it 'returns the product of negative and positive integers' do
+      expect(calculator.multiply(-2, 5)).to eq(-10)
+    end
+
+    it 'returns the product of double negative integers' do
+      expect(calculator.multiply(-3, -6)).to eq(18)
+    end
+
+    it 'returns the product of floats' do
+      expect(calculator.multiply(5.7, -3.9)).to eq(-22.23)
+    end
+  end
+
+  describe '#divide' do
+    it 'returns the division of positive integers' do
+      expect(calculator.divide(3, 3)).to eq(1)
+    end
+
+    it 'returns the division of negative integers' do
+      expect(calculator.divide(-4, 2)).to eq(-2)
+    end
+
+    it 'returns the division of floats' do
+      expect(calculator.divide(5.6, 2.8)).to eq(2)
+    end
+
+    it 'returns the division of floats with remainders as floats' do
+      expect(calculator.divide(3.0, 2.0)).to eq(1.5)
+    end
+
+    it 'returns an error if second argument equals 0' do
+      expect { calculator.divide(4, 0) }.to raise_error(ArgumentError)
+    end
+  end
+
+  describe '#pow' do
+    it 'returns a positive integer raised to another integer' do
+      expect(calculator.pow(3, 3)).to eq(27)
+      expect(calculator.pow(3, 3).class).to eq(Float)
+    end
+
+    it 'returns an integer raised to a negative integer' do
+      expect(calculator.pow(3, -3)).to eq(1/27.to_f)
+    end
+
+    it 'returns an integer raised to a float' do
+      expect(calculator.pow(3.0, 3.33)).to eq(3.0**3.33)
+    end
+  end
 end
