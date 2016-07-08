@@ -91,4 +91,59 @@ describe Calculator do
       expect(calculator.pow(3.0, 3.33)).to eq(3.0**3.33)
     end
   end
+
+  describe '#sqrt' do
+
+    it 'returns square roots for positive numbers' do
+      expect(calculator.sqrt(4)).to eq(2)
+    end
+
+    it 'returns errors for negative inputs' do
+      expect { calculator.sqrt(-4)}.to raise_error(ArgumentError)
+    end
+
+    it 'returns integers for round roots' do
+      expect(calculator.sqrt(9)).to eq(3)
+    end
+
+    it 'returns 2-digit decimals for non-roots' do
+      expect(calculator.sqrt(10)).to eq(Math.sqrt(10).round(2))
+    end
+  end
+
+  describe '#memory=' do
+
+    it ' stores an object in memory, overwriting previous memory' do
+      calculator.memory = 69
+      expect(calculator.instance_variable_get(:@memory)).to eq(69)
+    end
+  end
+
+  describe 'memory' do
+    it ' returns the object in memory' do
+     
+    end
+
+    it 'clears memory when returned' do
+    end
+
+    it 'starts as nil' do
+    end
+
+
+  end
+
+
+
+
+
 end
+
+
+
+
+
+
+
+
+
