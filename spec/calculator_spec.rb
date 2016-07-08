@@ -119,31 +119,25 @@ describe Calculator do
     end
   end
 
-  describe 'memory' do
-    it ' returns the object in memory' do
-     
+  describe '#memory' do
+    it 'starts as nil' do
+      expect(calculator.memory).to eq(nil)
+    end
+
+    it 'returns the object in memory' do
+      expect(calculator.memory).to eq(nil)
     end
 
     it 'clears memory when returned' do
+      calculator.memory = 69
+      expect(calculator.memory).to eq(69)
+      expect(calculator.memory).to eq(nil)
     end
-
-    it 'starts as nil' do
-    end
-
-
   end
 
-
-
-
-
+  describe '#stringify' do
+    it 'input is returned as a string' do
+      expect(Calculator.new(true).sqrt(4)).to eq('2')
+    end
+  end
 end
-
-
-
-
-
-
-
-
-
